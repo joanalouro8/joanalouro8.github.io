@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,10 @@
     <title>Joana Louro | Portfolio</title>
 
     <meta name="description"
-          content="Portfolio of Joana Louro, Artificial Intelligence Master's student at FEUP, showcasing projects in AI, autonomous systems, optimization and software engineering.">
+          content="Personal portfolio of Joana Louro, showcasing projects and experience in Artificial Intelligence, autonomous systems and software engineering.">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -57,12 +59,13 @@
 
         nav a:hover {
             color: #58a6ff;
+            text-decoration: none;
         }
 
         /* Hero */
 
         .hero {
-            max-width: 950px;
+            max-width: 900px;
             margin: 110px auto;
             padding: 0 24px;
             text-align: center;
@@ -70,14 +73,13 @@
 
         .hero h1 {
             font-size: clamp(2.2rem, 5vw, 3.5rem);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .hero p {
             color: #aab6c4;
             font-size: 1.1rem;
-            max-width: 850px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
         }
 
         .button {
@@ -87,7 +89,6 @@
             border-radius: 6px;
             background: #238636;
             color: white;
-            text-decoration: none;
             transition: 0.2s;
         }
 
@@ -122,11 +123,20 @@
             color: #aab6c4;
         }
 
+        /* About */
+
+        #about p {
+            max-width: 950px;
+        }
+
         /* Projects */
 
         .projects {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(100%, 300px), 1fr)
+            );
             gap: 20px;
         }
 
@@ -135,32 +145,25 @@
             border: 1px solid #30363d;
             border-radius: 10px;
             padding: 25px;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            text-align: left;
+            color: inherit;
+            font: inherit;
             transition: border-color 0.2s, transform 0.2s;
         }
 
         .card:hover {
             border-color: #58a6ff;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
 
-        .card summary {
-            cursor: pointer;
-            list-style: none;
-        }
-
-        .card summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .card summary::after {
-            content: "+";
-            float: right;
-            color: #58a6ff;
-            font-size: 1.4rem;
-        }
-
-        .card[open] summary::after {
-            content: "−";
+        .card:focus-visible {
+            outline: 2px solid #58a6ff;
+            outline-offset: 4px;
         }
 
         .card h3 {
@@ -168,8 +171,9 @@
             margin-bottom: 12px;
         }
 
-        .card .short-description {
+        .card p {
             color: #aab6c4;
+            font-size: 0.95rem;
             margin-bottom: 15px;
         }
 
@@ -178,36 +182,117 @@
             font-size: 0.85rem;
         }
 
-        .project-details {
-            border-top: 1px solid #30363d;
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 20px;
-            padding-top: 20px;
-            color: #aab6c4;
+            color: #58a6ff;
+            font-size: 0.9rem;
         }
 
-        .project-details h4 {
-            color: #e6edf3;
-            margin: 18px 0 8px;
+        /* Project Modal */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
         }
 
-        .project-details ul {
-            padding-left: 20px;
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 35px;
+            width: 100%;
+            max-width: 750px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalAppear 0.2s ease;
+        }
+
+        .modal-content h2 {
+            font-size: 1.7rem;
+            padding-right: 30px;
             margin-bottom: 15px;
         }
 
-        .project-details li {
-            margin-bottom: 7px;
+        .modal-content h4 {
+            color: #e6edf3;
+            margin: 22px 0 8px;
+        }
+
+        .modal-content p,
+        .modal-content li {
+            color: #aab6c4;
+        }
+
+        .modal-content p {
+            margin-bottom: 12px;
+        }
+
+        .modal-content ul {
+            padding-left: 22px;
+            margin-bottom: 15px;
+        }
+
+        .modal-content li {
+            margin-bottom: 8px;
+        }
+
+        .modal-content .tags {
+            margin-bottom: 25px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: white;
         }
 
         .project-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #30363d;
         }
 
         .project-links a {
             font-size: 0.95rem;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* CV */
@@ -238,6 +323,7 @@
         /* Mobile */
 
         @media (max-width: 600px) {
+
             nav {
                 flex-direction: column;
                 gap: 12px;
@@ -254,15 +340,24 @@
             section {
                 margin: 65px auto;
             }
+
+            .modal-content {
+                padding: 25px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
     <!-- Navigation -->
 
     <nav>
+
         <strong>Joana Louro</strong>
 
         <div>
@@ -270,6 +365,7 @@
             <a href="#projects">Projects</a>
             <a href="#cv">CV</a>
         </div>
+
     </nav>
 
 
@@ -277,28 +373,29 @@
 
     <header class="hero">
 
-        <h1>Artificial Intelligence & Software Engineering</h1>
+        <h1>Joana Louro's Portfolio</h1>
 
         <p>
-            Artificial Intelligence Master's student at FEUP, with hands-on
-            experience in algorithms, autonomous systems and optimization.
-            Led a team to the finals of the 2026 Bosch Future Mobility
-            Challenge, achieving 6th place worldwide. I am a competitive
-            volleyball athlete, driven by the same pursuit of excellence
-            in both sport and engineering.
+            Welcome to my personal portfolio!
+            
+            Explore my projects, experiences and achievements in Artificial Intelligence, autonomous systems and software engineering.
         </p>
 
-        <a class="button" href="#projects">Explore My Work</a>
+        <a class="button" href="#projects">
+            Explore My Work
+        </a>
 
         <a class="button secondary"
            href="https://github.com/joanalouro8"
-           target="_blank" rel="noopener noreferrer">
+           target="_blank"
+           rel="noopener noreferrer">
             GitHub
         </a>
 
         <a class="button secondary"
            href="https://www.linkedin.com/in/joanalouro8/"
-           target="_blank" rel="noopener noreferrer">
+           target="_blank"
+           rel="noopener noreferrer">
             LinkedIn
         </a>
 
@@ -340,207 +437,66 @@
             and competition achievements. Click on a project to learn more.
         </p>
 
+
         <div class="projects">
 
 
             <!-- Bosch Future Mobility Challenge -->
 
-            <details class="card">
+            <button class="card" data-project="bosch">
 
-                <summary>
-
+                <div>
                     <h3>Bosch Future Mobility Challenge 2026</h3>
 
-                    <p class="short-description">
+                    <p>
                         Team Leader · 6th place worldwide · Best New Team
                     </p>
 
                     <div class="tags">
                         C++ · Python · EKF · Embedded Systems · Autonomous Driving
                     </div>
-
-                </summary>
-
-                <div class="project-details">
-
-                    <p>
-                        Led a team to the finals of the Bosch Future
-                        Mobility Challenge 2026, achieving 6th place
-                        worldwide among 141 applicant teams and ranking
-                        as the competition's best new team.
-                    </p>
-
-                    <h4>Technical Contributions</h4>
-
-                    <ul>
-                        <li>
-                            Developed an Extended Kalman Filter (EKF)
-                            for vehicle state estimation through
-                            asynchronous fusion of GPS, IMU and
-                            wheel encoder data.
-                        </li>
-
-                        <li>
-                            Designed and implemented real-time autonomous
-                            vehicle control systems.
-                        </li>
-
-                        <li>
-                            Integrated behavioral decision logic,
-                            Pure Pursuit steering and reliable path
-                            tracking in looped-track environments.
-                        </li>
-
-                        <li>
-                            Led the team throughout the competition
-                            and presented the autonomous system
-                            to the technical jury.
-                        </li>
-                    </ul>
-
-                    <p>
-                        The implementation is part of a private
-                        competition repository.
-                    </p>
-
-                    <div class="project-links">
-
-                        <a href="https://boschfuturemobility.com/"
-                           target="_blank" rel="noopener noreferrer">
-                            Competition Website →
-                        </a>
-
-                    </div>
-
                 </div>
 
-            </details>
+                <div class="card-footer">
+                    <span>View project</span>
+                    <span>→</span>
+                </div>
+
+            </button>
 
 
             <!-- FSFEUP -->
 
-            <details class="card">
+            <button class="card" data-project="fsfeup">
 
-                <summary>
-
+                <div>
                     <h3>FSFEUP – Autonomous Systems</h3>
 
-                    <p class="short-description">
+                    <p>
                         Data Infrastructure Member · Head of Path Planning
                     </p>
 
                     <div class="tags">
                         C++ · Python · ROS 2 · PostgreSQL · Optimization
                     </div>
-
-                </summary>
-
-                <div class="project-details">
-
-                    <p>
-                        Member of Formula Student FEUP's Autonomous
-                        Systems Department, contributing to the
-                        development of the team's autonomous racing
-                        vehicle.
-                    </p>
-
-                    <h4>Data Infrastructure Subsystem</h4>
-
-                    <p>
-                        March 2025 – August 2025
-                    </p>
-
-                    <ul>
-                        <li>
-                            Developed a ROS node to extract rosbag data
-                            and populate a PostgreSQL database for
-                            vehicle performance analysis.
-                        </li>
-
-                        <li>
-                            Integrated Apache Superset dashboards to
-                            visualize vehicle metrics and performance
-                            indicators.
-                        </li>
-
-                        <li>
-                            Automated rosbag deployment and data
-                            ingestion through server-side scripts.
-                        </li>
-                    </ul>
-
-                    <h4>Head of Path Planning Subsystem</h4>
-
-                    <p>
-                        September 2025 – September 2026
-                    </p>
-
-                    <ul>
-                        <li>
-                            Refactored the path-planning codebase
-                            and optimized mean-path generation.
-                        </li>
-
-                        <li>
-                            Used optimization-based planning to
-                            generate high-performance racing
-                            trajectories while enforcing safety
-                            constraints.
-                        </li>
-
-                        <li>
-                            Implemented velocity profiling based
-                            on vehicle dynamics and physical
-                            constraints.
-                        </li>
-
-                        <li>
-                            Developed adaptive velocity planning
-                            that segments straights and curves
-                            and adjusts speeds based on tracking
-                            deviations.
-                        </li>
-                    </ul>
-
-                    <h4>Competition Achievements</h4>
-
-                    <ul>
-                        <li>
-                            Achieved 1st place in the Junior Team
-                            category at Formula Student Portugal
-                            and Formula Student Switzerland.
-                        </li>
-
-                        <li>
-                            Presented and technically defended
-                            FSFEUP's autonomous system before
-                            the competition judges.
-                        </li>
-                    </ul>
-
-                    <div class="project-links">
-
-                        <a href="https://github.com/fs-feup/autonomous-systems"
-                           target="_blank" rel="noopener noreferrer">
-                            GitHub Repository →
-                        </a>
-
-                    </div>
-
                 </div>
 
-            </details>
+                <div class="card-footer">
+                    <span>View experience</span>
+                    <span>→</span>
+                </div>
+
+            </button>
 
 
-            <!-- Algorithm Design Teaching Assistant -->
+            <!-- Algorithm Design -->
 
-            <details class="card">
+            <button class="card" data-project="algorithm">
 
-                <summary>
-
+                <div>
                     <h3>Algorithm Design – Teaching Assistant</h3>
 
-                    <p class="short-description">
+                    <p>
                         Reference implementations, evaluation datasets
                         and automated correction tools.
                     </p>
@@ -548,137 +504,48 @@
                     <div class="tags">
                         C++ · Algorithms · Graph Theory · Automation
                     </div>
-
-                </summary>
-
-                <div class="project-details">
-
-                    <p>
-                        Work developed as a Teaching Assistant for the
-                        Algorithm Design course at FEUP.
-                    </p>
-
-                    <ul>
-                        <li>
-                            Reviewed and validated programming-based
-                            group projects.
-                        </li>
-
-                        <li>
-                            Developed model solutions and evaluation
-                            datasets for project assessment.
-                        </li>
-
-                        <li>
-                            Implemented automated correction tools
-                            to support project evaluation.
-                        </li>
-                    </ul>
-
-                    <h4>Project 1 – Scientific Conference Review Assignment</h4>
-
-                    <p>
-                        Implementation of a scientific conference
-                        review assignment tool using a maximum flow
-                        algorithm (Ford–Fulkerson).
-
-                        The program assigns reviewers to conference
-                        submissions while respecting constraints
-                        such as reviewer expertise, review
-                        requirements and reviewer availability.
-                    </p>
-
-                    <h4>Project 2 – Register Allocation and Correction</h4>
-
-                    <p>
-                        Implementation of a register allocation tool
-                        based on web construction and interference
-                        graph coloring, accompanied by an automated
-                        correction tool.
-                    </p>
-
-                    <ul>
-                        <li>Web construction and interference graph generation.</li>
-                        <li>Greedy graph coloring for register allocation.</li>
-                        <li>Spill handling strategies.</li>
-                        <li>Automated validation of web construction and register assignments.</li>
-                        <li>Batch execution and correction scripts.</li>
-                    </ul>
-
-                    <div class="project-links">
-
-                        <a href="https://github.com/joanalouro8/algorithm-design-teaching-assistant"
-                           target="_blank" rel="noopener noreferrer">
-                            GitHub Repository →
-                        </a>
-
-                    </div>
-
                 </div>
 
-            </details>
+                <div class="card-footer">
+                    <span>View projects</span>
+                    <span>→</span>
+                </div>
+
+            </button>
 
 
             <!-- Santa Workshop Tour -->
 
-            <details class="card">
+            <button class="card" data-project="santa">
 
-                <summary>
-
+                <div>
                     <h3>Santa's Workshop Tour</h3>
 
-                    <p class="short-description">
+                    <p>
                         Optimization solution for the Kaggle competition.
                     </p>
 
                     <div class="tags">
                         Python · Optimization · Algorithms · Kaggle
                     </div>
-
-                </summary>
-
-                <div class="project-details">
-
-                    <p>
-                        Implementation of a solution to the Santa's
-                        Workshop Tour 2019 Kaggle competition.
-
-                        The challenge involves optimizing the
-                        assignment of families to workshop days
-                        while satisfying capacity constraints
-                        and minimizing the overall cost.
-                    </p>
-
-                    <h4>Resources</h4>
-
-                    <div class="project-links">
-
-                        <a href="https://github.com/Dead4ever07/AI-Project-1"
-                           target="_blank" rel="noopener noreferrer">
-                            GitHub Implementation →
-                        </a>
-
-                        <a href="https://www.kaggle.com/competitions/santa-workshop-tour-2019"
-                           target="_blank" rel="noopener noreferrer">
-                            Kaggle Competition →
-                        </a>
-
-                    </div>
-
                 </div>
 
-            </details>
+                <div class="card-footer">
+                    <span>View project</span>
+                    <span>→</span>
+                </div>
+
+            </button>
 
 
             <!-- House Price Prediction -->
 
-            <details class="card">
+            <button class="card" data-project="house">
 
-                <summary>
-
+                <div>
                     <h3>House Price Prediction</h3>
 
-                    <p class="short-description">
+                    <p>
                         Comparing machine learning models using real
                         and synthetic data.
                     </p>
@@ -686,41 +553,347 @@
                     <div class="tags">
                         Python · Machine Learning · Synthetic Data · Regression
                     </div>
-
-                </summary>
-
-                <div class="project-details">
-
-                    <p>
-                        Development and comparison of machine learning
-                        models to predict house sale prices in the
-                        Seattle area.
-                    </p>
-
-                    <p>
-                        Six models are evaluated using both a real
-                        Kaggle dataset and an AI-generated synthetic
-                        dataset, allowing comparison of predictive
-                        performance across different data sources.
-                    </p>
-
-                    <div class="project-links">
-
-                        <a href="https://github.com/joanalouro8/AI-Project-2"
-                           target="_blank" rel="noopener noreferrer">
-                            GitHub Repository →
-                        </a>
-
-                    </div>
-
                 </div>
 
-            </details>
+                <div class="card-footer">
+                    <span>View project</span>
+                    <span>→</span>
+                </div>
+
+            </button>
 
 
         </div>
 
     </section>
+
+
+    <!-- Project Modal -->
+
+    <div class="modal"
+         id="projectModal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle"
+         aria-hidden="true">
+
+        <div class="modal-content">
+
+            <button class="modal-close"
+                    id="modalClose"
+                    aria-label="Close project details">
+                &times;
+            </button>
+
+            <div id="modalBody"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Project Details (Hidden Templates) -->
+
+    <template id="bosch">
+
+        <h2 id="modalTitle">Bosch Future Mobility Challenge 2026</h2>
+
+        <p>
+            <strong>Team Leader · 6th place worldwide</strong>
+        </p>
+
+        <div class="tags">
+            C++ · Python · EKF · Embedded Systems · Autonomous Driving
+        </div>
+
+        <p>
+            Led a team to the finals of the Bosch Future Mobility
+            Challenge 2026, achieving 6th place worldwide among
+            141 applicant teams and ranking as the competition's
+            best new team.
+        </p>
+
+        <h4>Technical Contributions</h4>
+
+        <ul>
+            <li>
+                Developed an Extended Kalman Filter (EKF) for vehicle
+                state estimation through asynchronous fusion of GPS,
+                IMU and wheel encoder data.
+            </li>
+
+            <li>
+                Designed and implemented real-time autonomous
+                vehicle control systems.
+            </li>
+
+            <li>
+                Integrated behavioral decision logic, Pure Pursuit
+                steering and reliable path tracking in
+                looped-track environments.
+            </li>
+
+            <li>
+                Led the team throughout the competition and presented
+                the autonomous system to the technical jury.
+            </li>
+        </ul>
+
+        <p>
+            The implementation is part of a private competition
+            repository.
+        </p>
+
+        <div class="project-links">
+
+            <a href="https://boschfuturemobility.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+                Competition Website →
+            </a>
+
+        </div>
+
+    </template>
+
+
+    <template id="fsfeup">
+
+        <h2 id="modalTitle">FSFEUP – Autonomous Systems</h2>
+
+        <div class="tags">
+            C++ · Python · ROS 2 · PostgreSQL · Apache Superset · Optimization
+        </div>
+
+        <p>
+            Member of Formula Student FEUP's Autonomous Systems
+            Department, contributing to the development of the
+            team's autonomous racing vehicle.
+        </p>
+
+        <h4>Data Infrastructure Subsystem Member</h4>
+
+        <p>March 2025 – August 2025</p>
+
+        <ul>
+            <li>
+                Developed a ROS node to extract rosbag data and
+                populate a PostgreSQL database for vehicle
+                performance analysis.
+            </li>
+
+            <li>
+                Integrated Apache Superset dashboards to visualize
+                vehicle metrics and performance indicators.
+            </li>
+
+            <li>
+                Automated rosbag deployment and data ingestion
+                through server-side scripts.
+            </li>
+        </ul>
+
+        <h4>Head of Path Planning Subsystem</h4>
+
+        <p>September 2025 – September 2026</p>
+
+        <ul>
+            <li>
+                Refactored the path-planning codebase and optimized
+                mean-path generation.
+            </li>
+
+            <li>
+                Used optimization-based planning to generate
+                high-performance racing trajectories while
+                enforcing safety constraints.
+            </li>
+
+            <li>
+                Implemented velocity profiling based on vehicle
+                dynamics and physical constraints.
+            </li>
+
+            <li>
+                Developed adaptive velocity planning that segments
+                straights and curves and adjusts speeds based on
+                tracking deviations.
+            </li>
+        </ul>
+
+        <h4>Competition Achievements</h4>
+
+        <ul>
+            <li>
+                Achieved 1st place in the Junior Team category at
+                Formula Student Portugal and Formula Student Switzerland.
+            </li>
+
+            <li>
+                Presented and technically defended FSFEUP's
+                autonomous system before the competition judges.
+            </li>
+        </ul>
+
+        <div class="project-links">
+
+            <a href="https://github.com/fs-feup/autonomous-systems"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Repository →
+            </a>
+
+        </div>
+
+    </template>
+
+
+    <template id="algorithm">
+
+        <h2 id="modalTitle">Algorithm Design – Teaching Assistant</h2>
+
+        <div class="tags">
+            C++ · Algorithms · Graph Theory · Automation
+        </div>
+
+        <p>
+            Work developed as a Teaching Assistant for the
+            Algorithm Design (DA) course at the Faculty of
+            Engineering, University of Porto (FEUP).
+        </p>
+
+        <h4>Responsibilities</h4>
+
+        <ul>
+            <li>
+                Reviewed and validated programming-based group projects.
+            </li>
+
+            <li>
+                Developed model solutions and evaluation datasets
+                for project assessment.
+            </li>
+
+            <li>
+                Implemented automated correction tools to support
+                project evaluation.
+            </li>
+        </ul>
+
+        <h4>Project 1 – Scientific Conference Review Assignment</h4>
+
+        <p>
+            Implementation of a scientific conference review
+            assignment tool using a maximum flow algorithm
+            (Ford–Fulkerson).
+        </p>
+
+        <p>
+            The program assigns reviewers to conference submissions
+            while respecting constraints such as reviewer expertise,
+            review requirements and reviewer availability.
+        </p>
+
+        <h4>Project 2 – Register Allocation and Correction</h4>
+
+        <p>
+            Implementation of a register allocation tool based on
+            web construction and interference graph coloring,
+            accompanied by an automated correction tool.
+        </p>
+
+        <ul>
+            <li>Web construction and interference graph generation.</li>
+            <li>Greedy graph coloring for register allocation.</li>
+            <li>Spill handling strategies.</li>
+            <li>Automated validation of web construction and register assignments.</li>
+            <li>Batch execution and correction scripts.</li>
+        </ul>
+
+        <div class="project-links">
+
+            <a href="https://github.com/joanalouro8/algorithm-design-teaching-assistant"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Repository →
+            </a>
+
+        </div>
+
+    </template>
+
+
+    <template id="santa">
+
+        <h2 id="modalTitle">Santa's Workshop Tour</h2>
+
+        <div class="tags">
+            Python · Optimization · Algorithms · Kaggle
+        </div>
+
+        <p>
+            Implementation of a solution to the Santa's Workshop
+            Tour 2019 Kaggle competition.
+        </p>
+
+        <p>
+            The challenge involves optimizing the assignment of
+            families to workshop days while satisfying capacity
+            constraints and minimizing the overall cost.
+        </p>
+
+        <h4>Resources</h4>
+
+        <div class="project-links">
+
+            <a href="https://github.com/Dead4ever07/AI-Project-1"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Implementation →
+            </a>
+
+            <a href="https://www.kaggle.com/competitions/santa-workshop-tour-2019"
+               target="_blank"
+               rel="noopener noreferrer">
+                Kaggle Competition →
+            </a>
+
+        </div>
+
+    </template>
+
+
+    <template id="house">
+
+        <h2 id="modalTitle">House Price Prediction</h2>
+
+        <div class="tags">
+            Python · Machine Learning · Synthetic Data · Regression
+        </div>
+
+        <p>
+            Development and comparison of machine learning models
+            to predict house sale prices in the Seattle area.
+        </p>
+
+        <p>
+            Six models are evaluated using both a real Kaggle
+            dataset and an AI-generated synthetic dataset,
+            allowing comparison of predictive performance
+            across different data sources.
+        </p>
+
+        <div class="project-links">
+
+            <a href="https://github.com/joanalouro8/AI-Project-2"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Repository →
+            </a>
+
+        </div>
+
+    </template>
 
 
     <!-- CV -->
@@ -738,7 +911,8 @@
 
             <a class="button"
                href="joanalouro.pdf"
-               target="_blank" rel="noopener noreferrer">
+               target="_blank"
+               rel="noopener noreferrer">
                 View My CV
             </a>
 
@@ -759,18 +933,133 @@
 
         <p>
             © 2026 Joana Louro ·
+
             <a href="https://github.com/joanalouro8"
-               target="_blank" rel="noopener noreferrer">
+               target="_blank"
+               rel="noopener noreferrer">
                 GitHub
             </a>
+
             ·
+
             <a href="https://www.linkedin.com/in/joanalouro8/"
-               target="_blank" rel="noopener noreferrer">
+               target="_blank"
+               rel="noopener noreferrer">
                 LinkedIn
             </a>
         </p>
 
     </footer>
 
+
+    <!-- JavaScript -->
+
+    <script>
+
+        const modal = document.getElementById("projectModal");
+        const modalBody = document.getElementById("modalBody");
+        const closeButton = document.getElementById("modalClose");
+
+        let previousFocus = null;
+
+        // Open project modal
+
+        document.querySelectorAll(".card").forEach(card => {
+
+            card.addEventListener("click", () => {
+
+                const projectId = card.dataset.project;
+                const template = document.getElementById(projectId);
+
+                if (!template) return;
+
+                previousFocus = card;
+
+                modalBody.innerHTML = "";
+                modalBody.appendChild(
+                    template.content.cloneNode(true)
+                );
+
+                modal.classList.add("active");
+                modal.setAttribute("aria-hidden", "false");
+
+                document.body.style.overflow = "hidden";
+
+                closeButton.focus();
+
+            });
+
+        });
+
+
+        // Close modal
+
+        function closeModal() {
+
+            modal.classList.remove("active");
+            modal.setAttribute("aria-hidden", "true");
+
+            document.body.style.overflow = "";
+
+            if (previousFocus) {
+                previousFocus.focus();
+            }
+
+        }
+
+
+        closeButton.addEventListener("click", closeModal);
+
+
+        // Close when clicking outside the modal
+
+        modal.addEventListener("click", event => {
+
+            if (event.target === modal) {
+                closeModal();
+            }
+
+        });
+
+
+        // Close with Escape
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape" && modal.classList.contains("active")) {
+                closeModal();
+            }
+
+        });
+
+
+        // Keep keyboard focus inside the modal
+
+        modal.addEventListener("keydown", event => {
+
+            if (event.key !== "Tab") return;
+
+            const focusable = modal.querySelectorAll(
+                'a[href], button:not([disabled])'
+            );
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            }
+
+            else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+
+        });
+
+    </script>
+
 </body>
+
 </html>
