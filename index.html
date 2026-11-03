@@ -7,8 +7,7 @@
     <title>Joana Louro | Portfolio</title>
 
     <meta name="description"
-          content="Portfolio showcasing my projects in artificial intelligence,
-          autonomous systems, and software engineering.">
+          content="Portfolio of Joana Louro, Artificial Intelligence Master's student at FEUP, showcasing projects in AI, autonomous systems, optimization and software engineering.">
 
     <style>
         * {
@@ -28,6 +27,17 @@
             line-height: 1.7;
         }
 
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+
         nav {
             display: flex;
             justify-content: space-between;
@@ -36,41 +46,53 @@
             border-bottom: 1px solid #30363d;
         }
 
+        nav strong {
+            font-size: 1.1rem;
+        }
+
         nav a {
             color: #c9d1d9;
-            text-decoration: none;
-            margin-left: 20px;
+            margin-left: 24px;
         }
 
         nav a:hover {
             color: #58a6ff;
         }
 
+        /* Hero */
+
         .hero {
-            max-width: 900px;
-            margin: 100px auto;
+            max-width: 950px;
+            margin: 110px auto;
             padding: 0 24px;
             text-align: center;
         }
 
         .hero h1 {
             font-size: clamp(2.2rem, 5vw, 3.5rem);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .hero p {
             color: #aab6c4;
             font-size: 1.1rem;
-            margin-bottom: 30px;
+            max-width: 850px;
+            margin: 0 auto 30px;
         }
 
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 10px 22px;
             margin: 5px;
             border-radius: 6px;
             background: #238636;
             color: white;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #2ea043;
             text-decoration: none;
         }
 
@@ -79,9 +101,15 @@
             border: 1px solid #484f58;
         }
 
+        .button.secondary:hover {
+            background: #21262d;
+        }
+
+        /* Sections */
+
         section {
             max-width: 1100px;
-            margin: 80px auto;
+            margin: 90px auto;
             padding: 0 24px;
         }
 
@@ -90,10 +118,15 @@
             margin-bottom: 25px;
         }
 
+        section > p {
+            color: #aab6c4;
+        }
+
+        /* Projects */
+
         .projects {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 20px;
         }
 
@@ -102,38 +135,112 @@
             border: 1px solid #30363d;
             border-radius: 10px;
             padding: 25px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-3px);
+        }
+
+        .card summary {
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .card summary::after {
+            content: "+";
+            float: right;
+            color: #58a6ff;
+            font-size: 1.4rem;
+        }
+
+        .card[open] summary::after {
+            content: "−";
         }
 
         .card h3 {
+            font-size: 1.15rem;
             margin-bottom: 12px;
         }
 
-        .card p {
+        .card .short-description {
             color: #aab6c4;
             margin-bottom: 15px;
         }
 
         .tags {
             color: #79c0ff;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .text-link {
-            color: #58a6ff;
-            text-decoration: none;
+        .project-details {
+            border-top: 1px solid #30363d;
+            margin-top: 20px;
+            padding-top: 20px;
+            color: #aab6c4;
         }
+
+        .project-details h4 {
+            color: #e6edf3;
+            margin: 18px 0 8px;
+        }
+
+        .project-details ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .project-details li {
+            margin-bottom: 7px;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-links a {
+            font-size: 0.95rem;
+        }
+
+        /* CV */
+
+        .cv-section {
+            text-align: center;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 45px 25px;
+        }
+
+        .cv-section p {
+            color: #aab6c4;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
 
         footer {
             text-align: center;
             padding: 30px;
             border-top: 1px solid #30363d;
             color: #8b949e;
+            font-size: 0.9rem;
         }
+
+        /* Mobile */
 
         @media (max-width: 600px) {
             nav {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
             }
 
             nav a {
@@ -141,6 +248,10 @@
             }
 
             .hero {
+                margin: 70px auto;
+            }
+
+            section {
                 margin: 65px auto;
             }
         }
@@ -149,149 +260,516 @@
 
 <body>
 
+    <!-- Navigation -->
+
     <nav>
         <strong>Joana Louro</strong>
 
         <div>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="#cv">CV</a>
         </div>
     </nav>
 
+
+    <!-- Introduction -->
+
     <header class="hero">
+
         <h1>Artificial Intelligence & Software Engineering</h1>
 
         <p>
-            Master's student in Artificial Intelligence at FEUP,
-            interested in AI, autonomous systems, optimization,
-            and software engineering.
+            Artificial Intelligence Master's student at FEUP, with hands-on
+            experience in algorithms, autonomous systems and optimization.
+            Led a team to the finals of the 2026 Bosch Future Mobility
+            Challenge, achieving 6th place worldwide. I am a competitive
+            volleyball athlete, driven by the same pursuit of excellence
+            in both sport and engineering.
         </p>
 
-        <a class="button"
-           href="#projects">Explore My Projects</a>
+        <a class="button" href="#projects">Explore My Work</a>
 
         <a class="button secondary"
-           href="https://github.com/joanalouro8">
+           href="https://github.com/joanalouro8"
+           target="_blank" rel="noopener noreferrer">
             GitHub
         </a>
 
         <a class="button secondary"
-           href="https://www.linkedin.com/in/joanalouro8/">
+           href="https://www.linkedin.com/in/joanalouro8/"
+           target="_blank" rel="noopener noreferrer">
             LinkedIn
         </a>
+
     </header>
 
+
+    <!-- About -->
+
     <section id="about">
+
         <h2>About Me</h2>
 
         <p>
-            I am a Master's student in Artificial Intelligence at FEUP,
-            with practical experience in autonomous systems, path planning,
-            data infrastructure, and competitive programming. I enjoy
-            solving challenging engineering problems and developing
-            systems that combine algorithms, software, and real-world
-            applications.
+            I am currently pursuing a Master's degree in Artificial
+            Intelligence at the Faculty of Engineering of the University
+            of Porto (FEUP). My interests include algorithm design,
+            machine learning, optimization and autonomous systems.
+
+            Through academic projects, competitive programming and
+            Formula Student competitions, I have developed experience
+            in designing algorithms, building software systems and
+            solving complex engineering problems.
+
+            Outside engineering, I am a federated volleyball athlete,
+            having competed at both national and university level.
         </p>
+
     </section>
 
+
+    <!-- Projects -->
+
     <section id="projects">
-        <h2>Featured Projects</h2>
+
+        <h2>Projects & Experience</h2>
+
+        <p style="margin-bottom: 30px;">
+            A selection of my academic projects, engineering experience
+            and competition achievements. Click on a project to learn more.
+        </p>
 
         <div class="projects">
 
-            <article class="card">
-                <h3>Autonomous Racing & Path Planning</h3>
 
-                <p>
-                    Development of racing trajectory optimization
-                    and velocity planning algorithms for autonomous
-                    vehicle systems.
-                </p>
+            <!-- Bosch Future Mobility Challenge -->
 
-                <div class="tags">C++ · ROS 2 · Optimization</div>
+            <details class="card">
 
-                <p>
-                    <a class="text-link" href="#contact">
-                        Project details →
-                    </a>
-                </p>
-            </article>
+                <summary>
 
-            <article class="card">
-                <h3>Bosch Future Mobility Challenge 2026</h3>
+                    <h3>Bosch Future Mobility Challenge 2026</h3>
 
-                <p>
-                    Autonomous driving system involving state estimation,
-                    behaviour logic, and path tracking.
-                </p>
+                    <p class="short-description">
+                        Team Leader · 6th place worldwide · Best New Team
+                    </p>
 
-                <div class="tags">C++ · Python · Embedded Systems</div>
+                    <div class="tags">
+                        C++ · Python · EKF · Embedded Systems · Autonomous Driving
+                    </div>
 
-                <p>
-                    <a class="text-link" href="#contact">
-                        Project details →
-                    </a>
-                </p>
-            </article>
+                </summary>
 
-            <article class="card">
-                <h3>Responsible AI & Synthetic Data</h3>
+                <div class="project-details">
 
-                <p>
-                    Experimental study comparing synthetic data
-                    generation strategies, classification performance,
-                    and fairness.
-                </p>
+                    <p>
+                        Led a team to the finals of the Bosch Future
+                        Mobility Challenge 2026, achieving 6th place
+                        worldwide among 141 applicant teams and ranking
+                        as the competition's best new team.
+                    </p>
 
-                <div class="tags">Python · Machine Learning · Fairness</div>
+                    <h4>Technical Contributions</h4>
 
-                <p>
-                    <a class="text-link" href="#contact">
-                        Project details →
-                    </a>
-                </p>
-            </article>
+                    <ul>
+                        <li>
+                            Developed an Extended Kalman Filter (EKF)
+                            for vehicle state estimation through
+                            asynchronous fusion of GPS, IMU and
+                            wheel encoder data.
+                        </li>
 
-            <article class="card">
-                <h3>Data Engineering & Monitoring</h3>
+                        <li>
+                            Designed and implemented real-time autonomous
+                            vehicle control systems.
+                        </li>
 
-                <p>
-                    Data ingestion infrastructure for autonomous vehicle
-                    performance analysis, database storage, and
-                    visualization.
-                </p>
+                        <li>
+                            Integrated behavioral decision logic,
+                            Pure Pursuit steering and reliable path
+                            tracking in looped-track environments.
+                        </li>
 
-                <div class="tags">PostgreSQL · ROS · Apache Superset</div>
+                        <li>
+                            Led the team throughout the competition
+                            and presented the autonomous system
+                            to the technical jury.
+                        </li>
+                    </ul>
 
-                <p>
-                    <a class="text-link" href="#contact">
-                        Project details →
-                    </a>
-                </p>
-            </article>
+                    <p>
+                        The implementation is part of a private
+                        competition repository.
+                    </p>
+
+                    <div class="project-links">
+
+                        <a href="https://boschfuturemobility.com/"
+                           target="_blank" rel="noopener noreferrer">
+                            Competition Website →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- FSFEUP -->
+
+            <details class="card">
+
+                <summary>
+
+                    <h3>FSFEUP – Autonomous Systems</h3>
+
+                    <p class="short-description">
+                        Data Infrastructure Member · Head of Path Planning
+                    </p>
+
+                    <div class="tags">
+                        C++ · Python · ROS 2 · PostgreSQL · Optimization
+                    </div>
+
+                </summary>
+
+                <div class="project-details">
+
+                    <p>
+                        Member of Formula Student FEUP's Autonomous
+                        Systems Department, contributing to the
+                        development of the team's autonomous racing
+                        vehicle.
+                    </p>
+
+                    <h4>Data Infrastructure Subsystem</h4>
+
+                    <p>
+                        March 2025 – August 2025
+                    </p>
+
+                    <ul>
+                        <li>
+                            Developed a ROS node to extract rosbag data
+                            and populate a PostgreSQL database for
+                            vehicle performance analysis.
+                        </li>
+
+                        <li>
+                            Integrated Apache Superset dashboards to
+                            visualize vehicle metrics and performance
+                            indicators.
+                        </li>
+
+                        <li>
+                            Automated rosbag deployment and data
+                            ingestion through server-side scripts.
+                        </li>
+                    </ul>
+
+                    <h4>Head of Path Planning Subsystem</h4>
+
+                    <p>
+                        September 2025 – September 2026
+                    </p>
+
+                    <ul>
+                        <li>
+                            Refactored the path-planning codebase
+                            and optimized mean-path generation.
+                        </li>
+
+                        <li>
+                            Used optimization-based planning to
+                            generate high-performance racing
+                            trajectories while enforcing safety
+                            constraints.
+                        </li>
+
+                        <li>
+                            Implemented velocity profiling based
+                            on vehicle dynamics and physical
+                            constraints.
+                        </li>
+
+                        <li>
+                            Developed adaptive velocity planning
+                            that segments straights and curves
+                            and adjusts speeds based on tracking
+                            deviations.
+                        </li>
+                    </ul>
+
+                    <h4>Competition Achievements</h4>
+
+                    <ul>
+                        <li>
+                            Achieved 1st place in the Junior Team
+                            category at Formula Student Portugal
+                            and Formula Student Switzerland.
+                        </li>
+
+                        <li>
+                            Presented and technically defended
+                            FSFEUP's autonomous system before
+                            the competition judges.
+                        </li>
+                    </ul>
+
+                    <div class="project-links">
+
+                        <a href="https://github.com/fs-feup/autonomous-systems"
+                           target="_blank" rel="noopener noreferrer">
+                            GitHub Repository →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- Algorithm Design Teaching Assistant -->
+
+            <details class="card">
+
+                <summary>
+
+                    <h3>Algorithm Design – Teaching Assistant</h3>
+
+                    <p class="short-description">
+                        Reference implementations, evaluation datasets
+                        and automated correction tools.
+                    </p>
+
+                    <div class="tags">
+                        C++ · Algorithms · Graph Theory · Automation
+                    </div>
+
+                </summary>
+
+                <div class="project-details">
+
+                    <p>
+                        Work developed as a Teaching Assistant for the
+                        Algorithm Design course at FEUP.
+                    </p>
+
+                    <ul>
+                        <li>
+                            Reviewed and validated programming-based
+                            group projects.
+                        </li>
+
+                        <li>
+                            Developed model solutions and evaluation
+                            datasets for project assessment.
+                        </li>
+
+                        <li>
+                            Implemented automated correction tools
+                            to support project evaluation.
+                        </li>
+                    </ul>
+
+                    <h4>Project 1 – Scientific Conference Review Assignment</h4>
+
+                    <p>
+                        Implementation of a scientific conference
+                        review assignment tool using a maximum flow
+                        algorithm (Ford–Fulkerson).
+
+                        The program assigns reviewers to conference
+                        submissions while respecting constraints
+                        such as reviewer expertise, review
+                        requirements and reviewer availability.
+                    </p>
+
+                    <h4>Project 2 – Register Allocation and Correction</h4>
+
+                    <p>
+                        Implementation of a register allocation tool
+                        based on web construction and interference
+                        graph coloring, accompanied by an automated
+                        correction tool.
+                    </p>
+
+                    <ul>
+                        <li>Web construction and interference graph generation.</li>
+                        <li>Greedy graph coloring for register allocation.</li>
+                        <li>Spill handling strategies.</li>
+                        <li>Automated validation of web construction and register assignments.</li>
+                        <li>Batch execution and correction scripts.</li>
+                    </ul>
+
+                    <div class="project-links">
+
+                        <a href="https://github.com/joanalouro8/algorithm-design-teaching-assistant"
+                           target="_blank" rel="noopener noreferrer">
+                            GitHub Repository →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- Santa Workshop Tour -->
+
+            <details class="card">
+
+                <summary>
+
+                    <h3>Santa's Workshop Tour</h3>
+
+                    <p class="short-description">
+                        Optimization solution for the Kaggle competition.
+                    </p>
+
+                    <div class="tags">
+                        Python · Optimization · Algorithms · Kaggle
+                    </div>
+
+                </summary>
+
+                <div class="project-details">
+
+                    <p>
+                        Implementation of a solution to the Santa's
+                        Workshop Tour 2019 Kaggle competition.
+
+                        The challenge involves optimizing the
+                        assignment of families to workshop days
+                        while satisfying capacity constraints
+                        and minimizing the overall cost.
+                    </p>
+
+                    <h4>Resources</h4>
+
+                    <div class="project-links">
+
+                        <a href="https://github.com/Dead4ever07/AI-Project-1"
+                           target="_blank" rel="noopener noreferrer">
+                            GitHub Implementation →
+                        </a>
+
+                        <a href="https://www.kaggle.com/competitions/santa-workshop-tour-2019"
+                           target="_blank" rel="noopener noreferrer">
+                            Kaggle Competition →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- House Price Prediction -->
+
+            <details class="card">
+
+                <summary>
+
+                    <h3>House Price Prediction</h3>
+
+                    <p class="short-description">
+                        Comparing machine learning models using real
+                        and synthetic data.
+                    </p>
+
+                    <div class="tags">
+                        Python · Machine Learning · Synthetic Data · Regression
+                    </div>
+
+                </summary>
+
+                <div class="project-details">
+
+                    <p>
+                        Development and comparison of machine learning
+                        models to predict house sale prices in the
+                        Seattle area.
+                    </p>
+
+                    <p>
+                        Six models are evaluated using both a real
+                        Kaggle dataset and an AI-generated synthetic
+                        dataset, allowing comparison of predictive
+                        performance across different data sources.
+                    </p>
+
+                    <div class="project-links">
+
+                        <a href="https://github.com/joanalouro8/AI-Project-2"
+                           target="_blank" rel="noopener noreferrer">
+                            GitHub Repository →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </details>
+
 
         </div>
+
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
 
-        <p>
-            Interested in my work? Explore my repositories or
-            connect with me professionally.
-        </p>
+    <!-- CV -->
 
-        <p>
-            <a class="text-link"
-               href="https://github.com/joanalouro8">
-                GitHub
+    <section id="cv">
+
+        <div class="cv-section">
+
+            <h2>Curriculum Vitae</h2>
+
+            <p>
+                Interested in learning more about my academic background,
+                technical experience and achievements?
+            </p>
+
+            <a class="button"
+               href="joanalouro.pdf"
+               target="_blank" rel="noopener noreferrer">
+                View My CV
             </a>
-        </p>
+
+            <a class="button secondary"
+               href="joanalouro.pdf"
+               download>
+                Download PDF
+            </a>
+
+        </div>
+
     </section>
+
+
+    <!-- Footer -->
 
     <footer>
-        <p>© 2026 Joana Louro ·</p>
+
+        <p>
+            © 2026 Joana Louro ·
+            <a href="https://github.com/joanalouro8"
+               target="_blank" rel="noopener noreferrer">
+                GitHub
+            </a>
+            ·
+            <a href="https://www.linkedin.com/in/joanalouro8/"
+               target="_blank" rel="noopener noreferrer">
+                LinkedIn
+            </a>
+        </p>
+
     </footer>
 
 </body>
